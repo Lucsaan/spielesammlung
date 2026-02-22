@@ -1,7 +1,7 @@
 // Service Worker für Mamas Spieleseite
-// Version 1.0 - Einfache Offline-Funktionalität
+// Version 1.2 - Network-First für automatische Updates
 
-const CACHE_NAME = 'spieleseite-v1';
+const CACHE_NAME = 'spieleseite-v1.2';
 const ASSETS_TO_CACHE = [
   './spieleseite.html',
   './manifest.json'
@@ -47,7 +47,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch - Cache-First-Strategie für die HTML-Seite, Network-First für externe Links
+// Fetch - NETWORK-FIRST-Strategie: Versucht immer Updates zu laden, Cache nur als Fallback
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   
@@ -58,30 +58,32 @@ self.addEventListener('fetch', (event) => {
   }
   
   event.respondWith(
-    caches.match(event.request)
-      .then((cachedResponse) => {
-        if (cachedResponse) {
-          console.log('[Service Worker] Aus Cache geladen:', event.request.url);
-          return cachedResponse;
-        }
+    // ERST vom Netzwerk versuchen (damit Updates sofort ankommen)
+    fetch(event.request)
+      .then((response) => {
+        console.log('[Service Worker] ✅ Neu vom Server geladen:', event.request.url);
         
-        console.log('[Service Worker] Aus Netzwerk geladen:', event.request.url);
-        return fetch(event.request)
-          .then((response) => {
-            // Antwort klonen, da sie nur einmal verwendet werden kann
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-            
-            return response;
+        // Antwort klonen und im Cache aktualisieren
+        const responseToCache = response.clone();
+        caches.open(CACHE_NAME)
+          .then((cache) => {
+            cache.put(event.request, responseToCache);
+            console.log('[Service Worker] 💾 Cache aktualisiert');
           });
+        
+        return response;
       })
       .catch(() => {
-        console.log('[Service Worker] Offline - Datei nicht verfügbar:', event.request.url);
-        // Hier könnte eine Offline-Fallback-Seite zurückgegeben werden
+        // NUR wenn offline, aus dem Cache laden
+        console.log('[Service Worker] ⚠️ Offline - versuche Cache:', event.request.url);
+        return caches.match(event.request)
+          .then((cachedResponse) => {
+            if (cachedResponse) {
+              console.log('[Service Worker] 📦 Aus Cache geladen (offline)');
+              return cachedResponse;
+            }
+            console.log('[Service Worker] ❌ Nicht verfügbar (offline + nicht gecached)');
+          });
       })
   );
 });
