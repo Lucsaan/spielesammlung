@@ -878,6 +878,7 @@
     const modal = document.getElementById('gameModal');
     const title = document.getElementById('gameTitle');
     const iframe = document.getElementById('gameIframe');
+    const modalContent = document.getElementById('gameModalContent');
     
     title.textContent = gameName;
     iframe.src = gameUrl;
@@ -885,6 +886,19 @@
     
     // Verhindere Scrollen im Hintergrund
     document.body.style.overflow = 'hidden';
+    
+    // Automatisch in Vollbild gehen (nach kurzer Verzögerung damit Modal erst angezeigt wird)
+    setTimeout(() => {
+      if (modalContent.requestFullscreen) {
+        modalContent.requestFullscreen().catch(err => {
+          console.log('Vollbild nicht möglich:', err);
+        });
+      } else if (modalContent.webkitRequestFullscreen) {
+        modalContent.webkitRequestFullscreen(); // Safari
+      } else if (modalContent.msRequestFullscreen) {
+        modalContent.msRequestFullscreen(); // IE11
+      }
+    }, 100);
   }
 
   // Schließe Spiel-Modal
