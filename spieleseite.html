@@ -318,6 +318,118 @@
     .card:nth-child(4)  { animation-delay: 0.20s; }
     .card:nth-child(5)  { animation-delay: 0.25s; }
     .card:nth-child(6)  { animation-delay: 0.30s; }
+
+    /* ════════════════════════════════
+       WILLKOMMENS-KARTE
+    ════════════════════════════════ */
+    .welcome-card {
+      background: linear-gradient(135deg, #fff 0%, #fff5f8 100%);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 48px;
+      box-shadow: 0 8px 32px rgba(255,107,108,0.15);
+      border: 3px solid transparent;
+      background-image: 
+        linear-gradient(white, white),
+        linear-gradient(135deg, #FF6B35, #FF6FA8, #FFD93D);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+      50% { transform: scale(1.1) rotate(180deg); opacity: 0.6; }
+    }
+
+    .welcome-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .welcome-image {
+      flex-shrink: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #FF6B35, #FF6FA8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      box-shadow: 0 8px 24px rgba(255,107,53,0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .welcome-text {
+      flex: 1;
+    }
+
+    .welcome-greeting {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FF6B35, #EC4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .welcome-message {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .welcome-signature {
+      font-size: 0.95rem;
+      color: #999;
+      font-style: italic;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 540px) {
+      .welcome-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .welcome-image {
+        width: 100px;
+        height: 100px;
+        font-size: 3rem;
+      }
+      .welcome-greeting {
+        font-size: 1.5rem;
+      }
+      .welcome-message {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -336,6 +448,18 @@
     <h1>Meine <span class="accent">Spieleseite</span> 🌈</h1>
     <p class="subtitle">Einfach auf ein Spiel klicken — es öffnet sich direkt im Browser!</p>
   </header>
+
+  <!-- ── WILLKOMMENS-KARTE ── -->
+  <div class="welcome-card">
+    <div class="welcome-content">
+      <div class="welcome-image" id="welcomeEmoji">💝</div>
+      <div class="welcome-text">
+        <div class="welcome-greeting" id="welcomeGreeting">Herzlich Willkommen!</div>
+        <div class="welcome-message" id="welcomeMessage">Ich denke an dich und wünsche dir viel Freude beim Spielen!</div>
+        <div class="welcome-signature">Mit lieben Grüßen ❤️</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════
        MAHJONG
@@ -468,6 +592,85 @@
   </footer>
 
 </div>
+
+<!-- Wechselnde Grußkarten -->
+<script>
+  // Sammlung liebevoller Grußkarten
+  const greetingCards = [
+    {
+      emoji: '💝',
+      greeting: 'Herzlich Willkommen!',
+      message: 'Ich denke an dich und wünsche dir viel Freude beim Spielen!'
+    },
+    {
+      emoji: '🌸',
+      greeting: 'Schön, dass du da bist!',
+      message: 'Nimm dir Zeit für dich und genieße eine entspannte Spielrunde.'
+    },
+    {
+      emoji: '☀️',
+      greeting: 'Einen wunderschönen Tag!',
+      message: 'Lass die Sorgen los und hab einfach Spaß - du hast es verdient!'
+    },
+    {
+      emoji: '🌈',
+      greeting: 'Alles Liebe für dich!',
+      message: 'Möge dein Tag voller kleiner Freuden und schöner Momente sein.'
+    },
+    {
+      emoji: '🦋',
+      greeting: 'Du bist wunderbar!',
+      message: 'Vergiss nicht, wie besonders du bist. Viel Vergnügen beim Spielen!'
+    },
+    {
+      emoji: '🌺',
+      greeting: 'Für dich mit Liebe!',
+      message: 'Diese Spiele sind speziell für dich ausgesucht - hab Freude daran!'
+    },
+    {
+      emoji: '⭐',
+      greeting: 'Du strahlst heute!',
+      message: 'Nimm dir eine Auszeit und tue, was dir gut tut. Du bist großartig!'
+    },
+    {
+      emoji: '🌻',
+      greeting: 'Lächle und spiele!',
+      message: 'Jeder Tag mit dir ist ein Geschenk. Genieße deine Spielzeit!'
+    },
+    {
+      emoji: '🎀',
+      greeting: 'Nur für dich!',
+      message: 'Diese kleinen Momente sind wichtig - entspann dich und hab Spaß!'
+    },
+    {
+      emoji: '💐',
+      greeting: 'Du bist geliebt!',
+      message: 'Denk immer daran: Du machst die Welt zu einem schöneren Ort!'
+    },
+    {
+      emoji: '🕊️',
+      greeting: 'Friede und Freude!',
+      message: 'Mögen diese Spiele dir Entspannung und Glück bringen.'
+    },
+    {
+      emoji: '🎨',
+      greeting: 'Dein Tag, deine Zeit!',
+      message: 'Genieße jeden Moment - du hast dir diese Pause verdient!'
+    }
+  ];
+
+  // Wähle eine zufällige Grußkarte beim Laden der Seite
+  function showRandomGreeting() {
+    const randomCard = greetingCards[Math.floor(Math.random() * greetingCards.length)];
+    
+    document.getElementById('welcomeEmoji').textContent = randomCard.emoji;
+    document.getElementById('welcomeGreeting').textContent = randomCard.greeting;
+    document.getElementById('welcomeMessage').textContent = randomCard.message;
+  }
+
+  // Beim Laden der Seite eine Karte anzeigen
+  window.addEventListener('load', showRandomGreeting);
+</script>
 
 <!-- Service Worker Registration -->
 <script>
