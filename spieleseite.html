@@ -323,40 +323,49 @@
        WILLKOMMENS-KARTE
     ════════════════════════════════ */
     .welcome-card {
-      background: linear-gradient(135deg, #fff 0%, #fff5f8 100%);
       border-radius: 24px;
-      padding: 32px;
+      padding: 36px;
       margin-bottom: 48px;
-      box-shadow: 0 8px 32px rgba(255,107,108,0.15);
-      border: 3px solid transparent;
-      background-image: 
-        linear-gradient(white, white),
-        linear-gradient(135deg, #FF6B35, #FF6FA8, #FFD93D);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .welcome-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.18);
+    }
+
+    /* Hintergrund-Layer für die Karte (wird dynamisch gesetzt) */
     .welcome-card::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%);
-      animation: pulse 8s ease-in-out infinite;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.95;
+      z-index: 0;
+      transition: opacity 0.5s ease;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
-      50% { transform: scale(1.1) rotate(180deg); opacity: 0.6; }
+    /* Optionaler Overlay für bessere Lesbarkeit */
+    .welcome-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.3) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
     }
 
     .welcome-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       display: flex;
       align-items: center;
       gap: 24px;
@@ -364,21 +373,23 @@
 
     .welcome-image {
       flex-shrink: 0;
-      width: 120px;
-      height: 120px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #FF6B35, #FF6FA8);
+      width: 130px;
+      height: 130px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 4rem;
-      box-shadow: 0 8px 24px rgba(255,107,53,0.3);
+      font-size: 4.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       animation: float 3s ease-in-out infinite;
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-12px) scale(1.05); }
     }
 
     .welcome-text {
@@ -387,30 +398,30 @@
 
     .welcome-greeting {
       font-family: 'Baloo 2', cursive;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #FF6B35, #EC4899);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 8px;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2), 0 4px 20px rgba(0,0,0,0.15);
+      margin-bottom: 10px;
       line-height: 1.2;
     }
 
     .welcome-message {
-      font-size: 1.1rem;
-      color: var(--muted);
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.95);
       font-weight: 700;
-      line-height: 1.5;
-      margin-bottom: 4px;
+      line-height: 1.6;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.15);
     }
 
     .welcome-signature {
-      font-size: 0.95rem;
-      color: #999;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
       font-style: italic;
-      font-weight: 600;
-      margin-top: 8px;
+      font-weight: 700;
+      margin-top: 10px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
 
     @media (max-width: 540px) {
@@ -593,79 +604,138 @@
 
 </div>
 
-<!-- Wechselnde Grußkarten -->
+<!-- Wechselnde Grußkarten mit schönen Hintergründen -->
 <script>
-  // Sammlung liebevoller Grußkarten
+  // Sammlung wunderschöner Grußkarten mit passenden Hintergrund-Gradienten
   const greetingCards = [
     {
       emoji: '💝',
-      greeting: 'Herzlich Willkommen!',
-      message: 'Ich denke an dich und wünsche dir viel Freude beim Spielen!'
+      greeting: 'Ich denke an Dich',
+      message: 'In Gedanken bin ich bei dir und sende dir ganz viel Liebe. Du bedeutest mir so viel!',
+      background: 'linear-gradient(135deg, #FF6B9D 0%, #FFA07A 50%, #FFD700 100%)'
     },
     {
       emoji: '🌸',
-      greeting: 'Schön, dass du da bist!',
-      message: 'Nimm dir Zeit für dich und genieße eine entspannte Spielrunde.'
+      greeting: 'Du bist etwas ganz Besonderes',
+      message: 'Wie eine Blume, die im Frühling erblüht, so besonders bist du für mich. Hab einen wundervollen Tag!',
+      background: 'linear-gradient(135deg, #FFB7D5 0%, #FF85C0 50%, #DA70D6 100%)'
     },
     {
       emoji: '☀️',
-      greeting: 'Einen wunderschönen Tag!',
-      message: 'Lass die Sorgen los und hab einfach Spaß - du hast es verdient!'
+      greeting: 'Einen sonnigen Tag für Dich',
+      message: 'Möge dein Tag so strahlend sein wie die Sonne am Himmel. Du verdienst nur das Beste!',
+      background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%)'
     },
     {
       emoji: '🌈',
-      greeting: 'Alles Liebe für dich!',
-      message: 'Möge dein Tag voller kleiner Freuden und schöner Momente sein.'
+      greeting: 'Du machst mein Leben bunter',
+      message: 'Wie ein Regenbogen nach dem Regen, so erhellst du mein Leben. Danke, dass es dich gibt!',
+      background: 'linear-gradient(135deg, #FF6B9D 0%, #C77DFF 25%, #7DCFFF 50%, #90EE90 75%, #FFD700 100%)'
     },
     {
       emoji: '🦋',
-      greeting: 'Du bist wunderbar!',
-      message: 'Vergiss nicht, wie besonders du bist. Viel Vergnügen beim Spielen!'
+      greeting: 'Flieg und sei frei',
+      message: 'Wie ein Schmetterling im Sommerwind - nimm dir Zeit für dich und genieße jeden Moment!',
+      background: 'linear-gradient(135deg, #E0BBE4 0%, #D5A6E0 50%, #C9A0DC 100%)'
     },
     {
       emoji: '🌺',
-      greeting: 'Für dich mit Liebe!',
-      message: 'Diese Spiele sind speziell für dich ausgesucht - hab Freude daran!'
+      greeting: 'Für die wichtigste Person',
+      message: 'Du bist das Wertvollste in meinem Leben. Diese Spiele sind mit viel Liebe für dich ausgesucht!',
+      background: 'linear-gradient(135deg, #FF69B4 0%, #FF1493 50%, #C71585 100%)'
     },
     {
       emoji: '⭐',
-      greeting: 'Du strahlst heute!',
-      message: 'Nimm dir eine Auszeit und tue, was dir gut tut. Du bist großartig!'
+      greeting: 'Du bist mein Stern',
+      message: 'Wie ein Stern am Nachthimmel leuchtest du in meinem Leben. Du bist einfach wunderbar!',
+      background: 'linear-gradient(135deg, #4A90E2 0%, #7B68EE 50%, #9370DB 100%)'
     },
     {
       emoji: '🌻',
-      greeting: 'Lächle und spiele!',
-      message: 'Jeder Tag mit dir ist ein Geschenk. Genieße deine Spielzeit!'
-    },
-    {
-      emoji: '🎀',
-      greeting: 'Nur für dich!',
-      message: 'Diese kleinen Momente sind wichtig - entspann dich und hab Spaß!'
+      greeting: 'Bleib wie Du bist',
+      message: 'Wie eine Sonnenblume, die dem Licht folgt - du bringst Freude in jeden Tag. Danke dafür!',
+      background: 'linear-gradient(135deg, #FFE135 0%, #FFA500 50%, #FF8C00 100%)'
     },
     {
       emoji: '💐',
-      greeting: 'Du bist geliebt!',
-      message: 'Denk immer daran: Du machst die Welt zu einem schöneren Ort!'
+      greeting: 'Ich hab Dich lieb',
+      message: 'Ein Strauß voller Liebe und Dankbarkeit - für alles, was du bist und was du tust!',
+      background: 'linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FF69B4 100%)'
+    },
+    {
+      emoji: '🌙',
+      greeting: 'Du erh ellst meine Nacht',
+      message: 'Wie der Mond in der Nacht, so bringst du Licht in mein Leben. Hab eine schöne Zeit!',
+      background: 'linear-gradient(135deg, #191970 0%, #4B0082 50%, #6A5ACD 100%)'
+    },
+    {
+      emoji: '🎀',
+      greeting: 'Ein Geschenk für Dich',
+      message: 'Diese kleinen Momente sind wie Geschenke - nimm dir Zeit und genieße sie in vollen Zügen!',
+      background: 'linear-gradient(135deg, #FF85C0 0%, #FFA5D8 50%, #FFC0EA 100%)'
     },
     {
       emoji: '🕊️',
-      greeting: 'Friede und Freude!',
-      message: 'Mögen diese Spiele dir Entspannung und Glück bringen.'
+      greeting: 'Frieden und Glück für Dich',
+      message: 'Mögest du Ruhe finden und Glück in den kleinen Dingen des Lebens. Du hast es verdient!',
+      background: 'linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 50%, #80DEEA 100%)'
     },
     {
-      emoji: '🎨',
-      greeting: 'Dein Tag, deine Zeit!',
-      message: 'Genieße jeden Moment - du hast dir diese Pause verdient!'
+      emoji: '🌹',
+      greeting: 'Eine Rose für Dich',
+      message: 'Wie eine Rose im Garten, so einzigartig und schön bist du. Hab einen zauberhaften Tag!',
+      background: 'linear-gradient(135deg, #C41E3A 0%, #DC143C 50%, #FF69B4 100%)'
+    },
+    {
+      emoji: '✨',
+      greeting: 'Du bist ein Wunder',
+      message: 'Jeden Tag aufs Neue begeisterst du mich. Du bist etwas ganz Besonderes - vergiss das nie!',
+      background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 33%, #FF69B4 66%, #9370DB 100%)'
+    },
+    {
+      emoji: '🎈',
+      greeting: 'Leichtigkeit für Deinen Tag',
+      message: 'Lass alle Sorgen los wie Luftballons am Himmel. Heute ist dein Tag - genieße ihn!',
+      background: 'linear-gradient(135deg, #FF6B9D 0%, #FFA5D8 33%, #98D8C8 66%, #87CEEB 100%)'
+    },
+    {
+      emoji: '🍀',
+      greeting: 'Viel Glück und Segen',
+      message: 'Möge das Glück immer auf deiner Seite sein. Du bist ein wahrer Glücksfall für mich!',
+      background: 'linear-gradient(135deg, #98D8C8 0%, #6FCF97 50%, #56AB91 100%)'
+    },
+    {
+      emoji: '🌟',
+      greeting: 'Du lässt mich strahlen',
+      message: 'Wie ein funkelnder Stern erhellst du mein Leben. Danke, dass du immer für mich da bist!',
+      background: 'linear-gradient(135deg, #FFD700 0%, #FFC700 25%, #FFB700 50%, #FF6B9D 100%)'
+    },
+    {
+      emoji: '🧡',
+      greeting: 'Von Herzen für Dich',
+      message: 'Aus tiefstem Herzen sende ich dir Liebe und die schönsten Wünsche. Du bist mir so wichtig!',
+      background: 'linear-gradient(135deg, #FF8C42 0%, #FF6B35 50%, #FF4500 100%)'
     }
   ];
 
-  // Wähle eine zufällige Grußkarte beim Laden der Seite
+  // Wähle eine zufällige Grußkarte beim Laden der Seite und setze Hintergrund
   function showRandomGreeting() {
     const randomCard = greetingCards[Math.floor(Math.random() * greetingCards.length)];
+    const welcomeCard = document.querySelector('.welcome-card');
     
+    // Setze Inhalt
     document.getElementById('welcomeEmoji').textContent = randomCard.emoji;
     document.getElementById('welcomeGreeting').textContent = randomCard.greeting;
     document.getElementById('welcomeMessage').textContent = randomCard.message;
+    
+    // Setze Hintergrund-Gradient
+    if (welcomeCard) {
+      welcomeCard.style.setProperty('--card-gradient', randomCard.background);
+      const beforeElement = welcomeCard.querySelector('::before') || welcomeCard;
+      welcomeCard.querySelector('::before, .welcome-card')?.style.setProperty('background', randomCard.background);
+      // Direktes Setzen des Backgrounds auf das ::before Pseudo-Element via CSS Variable
+      welcomeCard.style.background = randomCard.background;
+    }
   }
 
   // Beim Laden der Seite eine Karte anzeigen
