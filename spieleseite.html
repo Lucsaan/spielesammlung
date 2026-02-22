@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎮 Meine Spieleseite</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="description" content="Einfache Spielesammlung mit Mahjong, Wimmelbild und mehr - speziell für Senioren">
+  <meta name="theme-color" content="#FF6B35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Mamas Spiele">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="icons/icon-192.svg">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192.svg">
+  <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-192.svg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="icon" type="image/svg+xml" sizes="192x192" href="icons/icon-192.svg">
+  <link rel="icon" type="image/svg+xml" sizes="512x512" href="icons/icon-512.svg">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #FFFBF5;
+      --text:   #1E1E2E;
+      --muted:  #6B7280;
+    }
+
+    /* ════════════════════════════════
+       HINTERGRUND – weiche Waben
+    ════════════════════════════════ */
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 15% 15%,  rgba(255,180,60,0.22)  0%, transparent 55%),
+        radial-gradient(circle at 85% 10%,  rgba(255,100,160,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%,  rgba(80,140,255,0.15)  0%, transparent 55%),
+        radial-gradient(circle at 90% 80%,  rgba(100,220,120,0.15) 0%, transparent 45%);
+      min-height: 100vh;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Floating bunte Kreise im Hintergrund */
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .bg-blob:nth-child(1) { width:420px; height:420px; background:#FFD93D; top:-100px; left:-100px; animation-duration:20s; }
+    .bg-blob:nth-child(2) { width:350px; height:350px; background:#FF6FA8; top:30%;  right:-80px;  animation-duration:15s; animation-delay:-5s; }
+    .bg-blob:nth-child(3) { width:400px; height:400px; background:#60A5FA; bottom:-80px; left:30%; animation-duration:22s; animation-delay:-9s; }
+    .bg-blob:nth-child(4) { width:280px; height:280px; background:#4ADE80; bottom:10%; right:10%; animation-duration:17s; animation-delay:-3s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    /* ════════════════════════════════
+       LAYOUT
+    ════════════════════════════════ */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ════════════════════════════════
+       HEADER
+    ════════════════════════════════ */
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 2.5px solid #FFD93D;
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #B45309;
+      box-shadow: 0 4px 14px rgba(255,200,50,0.3);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    h1 .accent { 
+      background: linear-gradient(135deg, #FF6B35, #FF6FA8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-weight: 700;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════════
+       KATEGORIE-HEADER
+    ════════════════════════════════ */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .section-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 2.5px;
+      border-radius: 2px;
+      background: linear-gradient(to right, rgba(0,0,0,0.08), transparent);
+    }
+
+    /* ════════════════════════════════
+       KARTEN-GRID
+    ════════════════════════════════ */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    /* ════════════════════════════════
+       SPIELKARTE
+    ════════════════════════════════ */
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 26px 22px 22px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border: 2.5px solid transparent;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition:
+        transform 0.22s cubic-bezier(.34,1.56,.64,1),
+        box-shadow 0.22s ease,
+        border-color 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Farbiger Top-Streifen */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      border-radius: 20px 20px 0 0;
+      background: var(--stripe);
+    }
+
+    .card:hover {
+      transform: translateY(-7px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+      border-color: var(--stripe);
+    }
+
+    .card-emoji {
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .card-name {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: white;
+      background: var(--stripe);
+      padding: 8px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+      transition: filter 0.15s, transform 0.15s;
+      align-self: flex-start;
+    }
+
+    .card:hover .card-link {
+      filter: brightness(1.1);
+      transform: scale(1.05);
+    }
+
+    /* ════════════════════════════════
+       FARBSTREIFEN-VARIANTEN
+    ════════════════════════════════ */
+    .s-orange  { --stripe: #FF6B35; }
+    .s-amber   { --stripe: #F59E0B; }
+    .s-gelb    { --stripe: #EAB308; }
+    .s-rosa    { --stripe: #EC4899; }
+    .s-lila    { --stripe: #A855F7; }
+    .s-indigo  { --stripe: #6366F1; }
+    .s-blau    { --stripe: #3B82F6; }
+    .s-tuerkis { --stripe: #06B6D4; }
+    .s-gruen   { --stripe: #22C55E; }
+    .s-mint    { --stripe: #10B981; }
+    .s-rot     { --stripe: #EF4444; }
+    .s-pink    { --stripe: #F472B6; }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      text-align: center;
+      margin-top: 56px;
+      font-size: 0.92rem;
+      color: #bbb;
+      font-weight: 700;
+    }
+
+    footer .heart { color: #FF6FA8; }
+
+    /* ════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════ */
+    @media (max-width: 540px) {
+      .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .card { padding: 18px 14px 14px; }
+      .card-emoji { font-size: 2.2rem; }
+      .card-name  { font-size: 1.05rem; }
+      .card-desc  { display: none; }
+    }
+
+    /* ════════════════════════════════
+       EINBLEND-ANIMATION
+    ════════════════════════════════ */
+    .card {
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card:nth-child(1)  { animation-delay: 0.05s; }
+    .card:nth-child(2)  { animation-delay: 0.10s; }
+    .card:nth-child(3)  { animation-delay: 0.15s; }
+    .card:nth-child(4)  { animation-delay: 0.20s; }
+    .card:nth-child(5)  { animation-delay: 0.25s; }
+    .card:nth-child(6)  { animation-delay: 0.30s; }
+  </style>
+</head>
+<body>
+
+<!-- Hintergrund-Blobs -->
+<div class="bg-blob"></div>
+<div class="bg-blob"></div>
+<div class="bg-blob"></div>
+<div class="bg-blob"></div>
+
+<div class="wrapper">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="tag">🎉 Kostenlos &amp; auf Deutsch</div>
+    <h1>Meine <span class="accent">Spieleseite</span> 🌈</h1>
+    <p class="subtitle">Einfach auf ein Spiel klicken — es öffnet sich direkt im Browser!</p>
+  </header>
+
+  <!-- ══════════════════════════
+       MAHJONG
+  ══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#FF6B35,#FF3D00); color:white;">🀄</div>
+      <h2 class="section-title">Mahjong</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+
+      <a class="card s-orange" href="https://themahjong.com/de" target="_blank" rel="noopener">
+        <div class="card-emoji">🀄</div>
+        <div class="card-name">Mahjong Klassisch</div>
+        <div class="card-desc">Steine paaren und das Feld Schritt für Schritt räumen</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-amber" href="https://themahjong.com/de/mahjong/turtle-free-mahjong" target="_blank" rel="noopener">
+        <div class="card-emoji">🐢</div>
+        <div class="card-name">Mahjong Schildkröte</div>
+        <div class="card-desc">Beliebtes Schildkröten-Layout – ein Klassiker!</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-gelb" href="https://themahjong.com/de/mahjong/big-hole-free-mahjong" target="_blank" rel="noopener">
+        <div class="card-emoji">🧩</div>
+        <div class="card-name">Mahjong Großes Loch</div>
+        <div class="card-desc">Eine besondere Variante mit spannend offenem Mittelpunkt</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════
+       WIMMELBILD
+  ══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#EC4899,#BE185D); color:white;">🔍</div>
+      <h2 class="section-title">Wimmelbild & Suchbilder</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+
+      <a class="card s-rosa" href="https://www.wimmelbildspiele.de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🔍</div>
+        <div class="card-name">Wimmelbild Spiele</div>
+        <div class="card-desc">Viele verschiedene Wimmelbilder – versteckte Objekte finden</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-lila" href="https://wellgames.com/de/hidden-object-games/" target="_blank" rel="noopener">
+        <div class="card-emoji">🕵️</div>
+        <div class="card-name">Detektiv-Wimmelbild</div>
+        <div class="card-desc">Spannende Geschichten und versteckte Gegenstände aufspüren</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-indigo" href="https://de.upjers.com/uptasia" target="_blank" rel="noopener">
+        <div class="card-emoji">🏰</div>
+        <div class="card-name">Uptasia</div>
+        <div class="card-desc">Wimmelbild trifft Stadtaufbau im charmanten 19. Jahrhundert</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════
+       MATCHING & KLASSIKER
+  ══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#22C55E,#15803D); color:white;">🃏</div>
+      <h2 class="section-title">Matching & Klassiker</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+
+      <a class="card s-gruen" href="https://www.solitaire.org/de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🃏</div>
+        <div class="card-name">Solitaire</div>
+        <div class="card-desc">Der entspannende Kartenspiel-Klassiker schlechthin</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-tuerkis" href="https://www.sudoku.com/de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🔢</div>
+        <div class="card-name">Sudoku</div>
+        <div class="card-desc">Zahlen logisch einsetzen – das tägliche Gehirn-Training</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-blau" href="https://www.jigidi.com/de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🧩</div>
+        <div class="card-name">Online-Puzzle</div>
+        <div class="card-desc">Schöne Bilder Stück für Stück zusammensetzen</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-mint" href="https://www.memozor.com/memory-spiele" target="_blank" rel="noopener">
+        <div class="card-emoji">🧠</div>
+        <div class="card-name">Memory</div>
+        <div class="card-desc">Gleiche Kartenpaare finden und das Gedächtnis trainieren</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-pink" href="https://www.ratehase.de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🐰</div>
+        <div class="card-name">Ratehase</div>
+        <div class="card-desc">Kreuzworträtsel, Schwedenrätsel, Wortsuche und mehr</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-rot" href="https://www.50plus.de/spiele.html" target="_blank" rel="noopener">
+        <div class="card-emoji">⭐</div>
+        <div class="card-name">50plus Spielesammlung</div>
+        <div class="card-desc">Viele klassische Spiele übersichtlich auf einer Seite</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    Gemacht mit <span class="heart">♥</span> — Viel Spaß beim Spielen!
+  </footer>
+
+</div>
+
+<!-- Service Worker Registration -->
+<script>
+  // Service Worker registrieren für PWA-Funktionalität
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then((registration) => {
+          console.log('✅ Service Worker erfolgreich registriert:', registration.scope);
+        })
+        .catch((error) => {
+          console.log('❌ Service Worker Registrierung fehlgeschlagen:', error);
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
