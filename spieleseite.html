@@ -203,6 +203,46 @@
       cursor: pointer;
     }
 
+    /* Favoriten-Stern Button */
+    .favorite-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2.5px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s cubic-bezier(.34,1.56,.64,1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .favorite-btn:hover {
+      transform: scale(1.15) rotate(15deg);
+      box-shadow: 0 4px 16px rgba(255, 215, 0, 0.4);
+    }
+
+    .favorite-btn:active {
+      transform: scale(0.9);
+    }
+
+    .favorite-btn.is-favorite {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      border-color: #FFD700;
+      animation: favPulse 0.4s ease;
+    }
+
+    @keyframes favPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+    }
+
     /* Farbiger Top-Streifen */
     .card::before {
       content: '';
@@ -655,6 +695,20 @@
   </div>
 
   <!-- ══════════════════════════
+       ⭐ FAVORITEN
+  ══════════════════════════ -->
+  <div class="section" id="favoritesSection" style="display: none;">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#FFD700,#FFA500); color:white;">⭐</div>
+      <h2 class="section-title">Meine Favoriten</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid" id="favoritesGrid">
+      <!-- Favoriten werden hier dynamisch eingefügt -->
+    </div>
+  </div>
+
+  <!-- ══════════════════════════
        MAHJONG
   ══════════════════════════ -->
   <div class="section">
@@ -665,42 +719,48 @@
     </div>
     <div class="grid">
 
-      <div class="card s-orange" onclick="openGame('Mahjong Klassisch', 'https://cdn.htmlgames.com/MahjongClassic/index.html?npa=1')">
+      <div class="card s-orange" onclick="openGame('Mahjong Klassisch', 'https://cdn.htmlgames.com/MahjongClassic/index.html?npa=1')" data-game-id="mahjong-klassisch" data-game-emoji="🀄" data-game-type="embed">
+        <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite('mahjong-klassisch')">☆</button>
         <div class="card-emoji">🀄</div>
         <div class="card-name">Mahjong Klassisch</div>
         <div class="card-desc">Große Steine, deutsche Buttons – direkt hier spielen!</div>
         <span class="card-link">Spielen ▶</span>
       </div>
 
-      <a class="card s-amber" href="https://themahjong.com/de/mahjong/turtle-free-mahjong" target="_blank" rel="noopener">
+      <a class="card s-amber" href="https://themahjong.com/de/mahjong/turtle-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-turtle" data-game-emoji="🐢" data-game-type="external">
+        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-turtle')">☆</button>
         <div class="card-emoji">🐢</div>
         <div class="card-name">Mahjong Schildkröte</div>
         <div class="card-desc">Beliebtes Schildkröten-Layout – ein Klassiker!</div>
         <span class="card-link">Spielen ▶</span>
       </a>
 
-      <a class="card s-gelb" href="https://themahjong.com/de/mahjong/big-hole-free-mahjong" target="_blank" rel="noopener">
+      <a class="card s-gelb" href="https://themahjong.com/de/mahjong/big-hole-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-bighole" data-game-emoji="🧩" data-game-type="external">
+        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-bighole')">☆</button>
         <div class="card-emoji">🧩</div>
         <div class="card-name">Mahjong Großes Loch</div>
         <div class="card-desc">Besondere Variante mit offenem Mittelpunkt – spannend!</div>
         <span class="card-link">Spielen ▶</span>
       </a>
 
-      <a class="card s-rosa" href="https://themahjong.com/de/mahjong/pyramid-free-mahjong" target="_blank" rel="noopener">
+      <a class="card s-rosa" href="https://themahjong.com/de/mahjong/pyramid-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-pyramid" data-game-emoji="🔺" data-game-type="external">
+        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-pyramid')">☆</button>
         <div class="card-emoji">🔺</div>
         <div class="card-name">Mahjong Pyramide</div>
         <div class="card-desc">Pyramidenform – einfacher Einstieg, große Steine</div>
         <span class="card-link">Spielen ▶</span>
       </a>
 
-      <a class="card s-lila" href="https://themahjong.com/de/mahjong/arena-free-mahjong" target="_blank" rel="noopener">
+      <a class="card s-lila" href="https://themahjong.com/de/mahjong/arena-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-arena" data-game-emoji="⚡" data-game-type="external">
+        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-arena')">☆</button>
         <div class="card-emoji">⚡</div>
         <div class="card-name">Mahjong Arena</div>
         <div class="card-desc">Arena-Layout – übersichtlich und gut spielbar</div>
         <span class="card-link">Spielen ▶</span>
       </a>
 
-      <a class="card s-tuerkis" href="https://themahjong.com/de/mahjong/mountains-free-mahjong" target="_blank" rel="noopener">
+      <a class="card s-tuerkis" href="https://themahjong.com/de/mahjong/mountains-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-mountains" data-game-emoji="⛰️" data-game-type="external">
+        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-mountains')">☆</button>
         <div class="card-emoji">⛰️</div>
         <div class="card-name">Mahjong Berge</div>
         <div class="card-desc">Bergformation – abwechslungsreich und entspannend</div>
@@ -879,6 +939,62 @@
         <div class="card-emoji">🏛️</div>
         <div class="card-name">Uptasia</div>
         <div class="card-desc">Wimmelbild trifft Stadtaufbau – langanhaltender Spielspaß</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════
+       GEHIRNJOGGING & RÄTSEL
+  ══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg,#F59E0B,#D97706); color:white;">🧠</div>
+      <h2 class="section-title">Gehirnjogging & Rätsel</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid">
+
+      <a class="card s-amber" href="https://www.sudoku.com/de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🔢</div>
+        <div class="card-name">Sudoku</div>
+        <div class="card-desc">Zahlen logisch einsetzen – das tägliche Gehirn-Training</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-orange" href="https://www.memozor.com/memory-spiele" target="_blank" rel="noopener">
+        <div class="card-emoji">🧩</div>
+        <div class="card-name">Memory</div>
+        <div class="card-desc">Gleiche Kartenpaare finden und das Gedächtnis trainieren</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-gelb" href="https://www.jigidi.com/de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🧩</div>
+        <div class="card-name">Online-Puzzle</div>
+        <div class="card-desc">Schöne Bilder Stück für Stück zusammensetzen</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-rosa" href="https://www.ratehase.de/" target="_blank" rel="noopener">
+        <div class="card-emoji">🐰</div>
+        <div class="card-name">Ratehase Rätsel</div>
+        <div class="card-desc">Kreuzworträtsel, Schwedenrätsel, Wortsuche und mehr</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-lila" href="https://www.spielaffe.de/Spiel/2048" target="_blank" rel="noopener">
+        <div class="card-emoji">🔄</div>
+        <div class="card-name">2048</div>
+        <div class="card-desc">Zahlen kombinieren bis zur 2048 – süchtig machendes Puzzle!</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-indigo" href="https://www.50plus.de/spiele/denken.html" target="_blank" rel="noopener">
+        <div class="card-emoji">💭</div>
+        <div class="card-name">50plus Denkspiele</div>
+        <div class="card-desc">Speziell für Senioren – viele Denkspiele und Rätsel</div>
         <span class="card-link">Spielen ▶</span>
       </a>
 
@@ -1200,6 +1316,156 @@
 
   // Beim Laden der Seite eine Karte anzeigen
   window.addEventListener('load', showRandomGreeting);
+</script>
+
+<!-- Favoriten System -->
+<script>
+  // LocalStorage Schlüssel für Favoriten
+  const FAVORITES_KEY = 'spieleseite_favoriten';
+
+  // Lade Favoriten aus LocalStorage
+  function loadFavorites() {
+    const stored = localStorage.getItem(FAVORITES_KEY);
+    return stored ? JSON.parse(stored) : [];
+  }
+
+  // Speichere Favoriten in LocalStorage
+  function saveFavorites(favorites) {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  }
+
+  // Toggle Favorit (hinzufügen/entfernen)
+  function toggleFavorite(gameId) {
+    let favorites = loadFavorites();
+    const index = favorites.indexOf(gameId);
+    
+    if (index > -1) {
+      // Entfernen
+      favorites.splice(index, 1);
+    } else {
+      // Hinzufügen
+      favorites.push(gameId);
+    }
+    
+    saveFavorites(favorites);
+    updateFavoritesUI();
+  }
+
+  // Update UI für alle Favoriten-Sterne
+  function updateFavoritesUI() {
+    const favorites = loadFavorites();
+    
+    // Update alle Stern-Buttons
+    document.querySelectorAll('.card[data-game-id]').forEach(card => {
+      const gameId = card.getAttribute('data-game-id');
+      const btn = card.querySelector('.favorite-btn');
+      
+      if (btn) {
+        if (favorites.includes(gameId)) {
+          btn.textContent = '★';
+          btn.classList.add('is-favorite');
+        } else {
+          btn.textContent = '☆';
+          btn.classList.remove('is-favorite');
+        }
+      }
+    });
+    
+    // Update Favoriten-Sektion
+    updateFavoritesSection();
+  }
+
+  // Update Favoriten-Sektion (zeige favorisierte Spiele)
+  function updateFavoritesSection() {
+    const favorites = loadFavorites();
+    const section = document.getElementById('favoritesSection');
+    const grid = document.getElementById('favoritesGrid');
+    
+    if (favorites.length === 0) {
+      section.style.display = 'none';
+      return;
+    }
+    
+    section.style.display = 'block';
+    grid.innerHTML = '';
+    
+    // Finde alle Spiel-Karten und clone favorisierte
+    favorites.forEach(gameId => {
+      const originalCard = document.querySelector(`[data-game-id="${gameId}"]`);
+      if (originalCard) {
+        const clone = originalCard.cloneNode(true);
+        
+        // Aktualisiere den Favoriten-Button im Clone
+        const cloneBtn = clone.querySelector('.favorite-btn');
+        if (cloneBtn) {
+          cloneBtn.textContent = '★';
+          cloneBtn.classList.add('is-favorite');
+          cloneBtn.setAttribute('onclick', `event.stopPropagation(); toggleFavorite('${gameId}')`);
+        }
+        
+        // Preserve click handler für embed-Spiele
+        const gameType = clone.getAttribute('data-game-type');
+        if (gameType === 'embed') {
+          const gameName = clone.querySelector('.card-name').textContent;
+          const gameUrl = originalCard.getAttribute('onclick').match(/'([^']+)'/g)[1].replace(/'/g, '');
+          clone.setAttribute('onclick', `openGame('${gameName}', ${gameUrl})`);
+        }
+        
+        grid.appendChild(clone);
+      }
+    });
+  }
+
+  // Generiere automatisch Game-IDs und füge Favoriten-Buttons hinzu
+  function initializeFavoriteButtons() {
+    document.querySelectorAll('.card').forEach((card, index) => {
+      // Skip wenn schon initialisiert
+      if (card.hasAttribute('data-game-id')) {
+        return;
+      }
+      
+      // Generiere eindeutige ID vom Spielnamen
+      const nameElement = card.querySelector('.card-name');
+      if (!nameElement) return;
+      
+      const gameName = nameElement.textContent.trim();
+      const gameId = gameName.toLowerCase()
+        .replace(/ä/g, 'ae')
+        .replace(/ö/g, 'oe')
+        .replace(/ü/g, 'ue')
+        .replace(/ß/g, 'ss')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      
+      // Setze Attribute
+      card.setAttribute('data-game-id', gameId);
+      
+      const emoji = card.querySelector('.card-emoji')?.textContent || '🎮';
+      card.setAttribute('data-game-emoji', emoji);
+      
+      // Bestimme Typ (embed oder external)
+      const hasOnclick = card.hasAttribute('onclick');
+      const gameType = hasOnclick ? 'embed' : 'external';
+      card.setAttribute('data-game-type', gameType);
+      
+      // Füge Favoriten-Button hinzu (wenn nicht schon vorhanden)
+      if (!card.querySelector('.favorite-btn')) {
+        const favBtn = document.createElement('button');
+        favBtn.className = 'favorite-btn';
+        favBtn.textContent = '☆';
+        favBtn.setAttribute('onclick', `event.preventDefault(); event.stopPropagation(); toggleFavorite('${gameId}')`);
+        
+        // Füge Button am Anfang der Karte ein
+        card.insertBefore(favBtn, card.firstChild);
+      }
+    });
+  }
+
+  // Initialisiere Favoriten beim Laden
+  window.addEventListener('load', () => {
+    initializeFavoriteButtons();
+    updateFavoritesUI();
+  });
 </script>
 
 <!-- Service Worker Registration -->
