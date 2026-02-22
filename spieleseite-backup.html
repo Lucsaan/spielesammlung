@@ -200,7 +200,6 @@
         border-color 0.18s;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
     }
 
     /* Farbiger Top-Streifen */
@@ -442,115 +441,6 @@
         font-size: 1rem;
       }
     }
-
-    /* ════════════════════════════════
-       GAME MODAL / POPUP
-    ════════════════════════════════ */
-    .game-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .game-modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .game-modal-content {
-      background: white;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 1200px;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      animation: slideUp 0.3s ease;
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .game-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 30px;
-      border-bottom: 2px solid #f0f0f0;
-    }
-
-    .game-modal-title {
-      font-family: 'Baloo 2', cursive;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .game-modal-close {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #f5f5f5;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      color: #666;
-    }
-
-    .game-modal-close:hover {
-      background: #ff4444;
-      color: white;
-      transform: rotate(90deg);
-    }
-
-    .game-modal-body {
-      flex: 1;
-      padding: 20px;
-      overflow: hidden;
-    }
-
-    .game-iframe {
-      width: 100%;
-      height: 70vh;
-      border: none;
-      border-radius: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .game-modal-content {
-        max-height: 95vh;
-        margin: 10px;
-      }
-      .game-iframe {
-        height: 60vh;
-      }
-      .game-modal-header {
-        padding: 15px 20px;
-      }
-      .game-modal-title {
-        font-size: 1.3rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -593,12 +483,12 @@
     </div>
     <div class="grid">
 
-      <div class="card s-orange" onclick="openGame('Mahjong Klassisch', 'https://cdn.htmlgames.com/MahjongClassic/index.html?npa=1')">
+      <a class="card s-orange" href="https://themahjong.com/de" target="_blank" rel="noopener">
         <div class="card-emoji">🀄</div>
         <div class="card-name">Mahjong Klassisch</div>
-        <div class="card-desc">Große Steine, deutsche Buttons – direkt hier spielen!</div>
+        <div class="card-desc">Große Steine, auf Deutsch – perfekt zum Entspannen!</div>
         <span class="card-link">Spielen ▶</span>
-      </div>
+      </a>
 
       <a class="card s-amber" href="https://themahjong.com/de/mahjong/turtle-free-mahjong" target="_blank" rel="noopener">
         <div class="card-emoji">🐢</div>
@@ -649,32 +539,32 @@
     </div>
     <div class="grid">
 
-      <div class="card s-tuerkis" onclick="openGame('Bubble Woods', 'https://cdn.htmlgames.com/BubbleWoods/index.html?npa=1')">
+      <a class="card s-tuerkis" href="https://www.king.com/de/game/bubblewitch3" target="_blank" rel="noopener">
+        <div class="card-emoji">🧙‍♀️</div>
+        <div class="card-name">Bubble Witch 3 Saga</div>
+        <div class="card-desc">Von den Candy Crush Machern – magische Bubble-Action!</div>
+        <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <a class="card s-blau" href="https://www.spielaffe.de/Spiel/bubble-woods" target="_blank" rel="noopener">
         <div class="card-emoji">🌳</div>
         <div class="card-name">Bubble Woods</div>
-        <div class="card-desc">Entspannend, deutsche Buttons – hier direkt spielen!</div>
+        <div class="card-desc">Entspannendes Bubble-Spiel im Wald – große Bubbles!</div>
         <span class="card-link">Spielen ▶</span>
-      </div>
-
-      <div class="card s-blau" onclick="openGame('Endless Bubble Shooter', 'https://cdn.htmlgames.com/EndlessBubbleShooter/index.html?npa=1')">
-        <div class="card-emoji">♾️</div>
-        <div class="card-name">Endless Bubble Shooter</div>
-        <div class="card-desc">Endloser Spielspaß – komplett ohne Werbung!</div>
-        <span class="card-link">Spielen ▶</span>
-      </div>
+      </a>
 
       <a class="card s-indigo" href="https://www.spielaffe.de/Spiel/smarty-bubbles" target="_blank" rel="noopener">
         <div class="card-emoji">💎</div>
         <div class="card-name">Smarty Bubbles</div>
-        <div class="card-desc">Auf Spielaffe – mehr Varianten und Levels!</div>
-        <span class="card-link">Extern öffnen ▶</span>
+        <div class="card-desc">Klassischer Bubble Shooter – einfach und süchtig machend!</div>
+        <span class="card-link">Spielen ▶</span>
       </a>
 
-      <a class="card s-lila" href="https://www.king.com/de/game/bubblewitch3" target="_blank" rel="noopener">
-        <div class="card-emoji">🧙‍♀️</div>
-        <div class="card-name">Bubble Witch 3 Saga</div>
-        <div class="card-desc">Von King.com – viele Level und Abenteuer!</div>
-        <span class="card-link">Extern öffnen ▶</span>
+      <a class="card s-lila" href="https://cdn.htmlgames.com/BubbleWoods/index.html?npa=1" target="_blank" rel="noopener">
+        <div class="card-emoji">🎯</div>
+        <div class="card-name">Bubble Woods Classic</div>
+        <div class="card-desc">Ohne Werbung – direkt spielen, sauber und schnell!</div>
+        <span class="card-link">Spielen ▶</span>
       </a>
 
       <a class="card s-rosa" href="https://www.spielaffe.de/Spiel/bubble-charms" target="_blank" rel="noopener">
@@ -726,12 +616,12 @@
         <span class="card-link">Spielen ▶</span>
       </a>
 
-      <div class="card s-amber" onclick="openGame('Jewels Classic', 'https://cdn.htmlgames.com/JewelsClassic/index.html?npa=1')">
+      <a class="card s-amber" href="https://cdn.htmlgames.com/JewelsClassic/index.html?npa=1" target="_blank" rel="noopener">
         <div class="card-emoji">🔷</div>
         <div class="card-name">Jewels Classic</div>
-        <div class="card-desc">Deutsche Grafik-Buttons – hier direkt spielen!</div>
+        <div class="card-desc">Klassisches Match-3 ohne Ablenkung – pur und schön</div>
         <span class="card-link">Spielen ▶</span>
-      </div>
+      </a>
 
       <a class="card s-gelb" href="https://www.king.com/de/game/candycrushsoda" target="_blank" rel="noopener">
         <div class="card-emoji">🥤</div>
@@ -761,18 +651,11 @@
     </div>
     <div class="grid">
 
-      <div class="card s-rosa" onclick="openGame('Hunting Jack - Bahnhof', 'https://cdn.htmlgames.com/HuntingJackAtTheTrainStation/index.html?npa=1')">
-        <div class="card-emoji">🚂</div>
-        <div class="card-name">Hunting Jack - Bahnhof</div>
-        <div class="card-desc">Auf Deutsch! Objekte am Bahnhof finden – hier spielen!</div>
-        <span class="card-link">Spielen ▶</span>
-      </div>
-
-      <a class="card s-lila" href="https://www.spielaffe.de/wimmelbildspiele" target="_blank" rel="noopener">
+      <a class="card s-rosa" href="https://www.spielaffe.de/wimmelbildspiele" target="_blank" rel="noopener">
         <div class="card-emoji">🔍</div>
         <div class="card-name">Spielaffe Wimmelbilder</div>
-        <div class="card-desc">Viele kostenlose Wimmelbilder – große Auswahl!</div>
-        <span class="card-link">Extern öffnen ▶</span>
+        <div class="card-desc">Viele kostenlose Wimmelbilder auf Deutsch – große Auswahl!</div>
+        <span class="card-link">Spielen ▶</span>
       </a>
 
       <a class="card s-lila" href="https://www.rtlspiele.de/wimmelbilder" target="_blank" rel="noopener">
@@ -874,62 +757,6 @@
   </footer>
 
 </div>
-
-<!-- GAME MODAL -->
-<div class="game-modal" id="gameModal">
-  <div class="game-modal-content">
-    <div class="game-modal-header">
-      <div class="game-modal-title" id="gameTitle">Spiel</div>
-      <button class="game-modal-close" onclick="closeGame()" aria-label="Schließen">✕</button>
-    </div>
-    <div class="game-modal-body">
-      <iframe class="game-iframe" id="gameIframe" src="" allowfullscreen></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- Game Modal Functions -->
-<script>
-  // Öffne Spiel in Modal
-  function openGame(gameName, gameUrl) {
-    const modal = document.getElementById('gameModal');
-    const title = document.getElementById('gameTitle');
-    const iframe = document.getElementById('gameIframe');
-    
-    title.textContent = gameName;
-    iframe.src = gameUrl;
-    modal.classList.add('active');
-    
-    // Verhindere Scrollen im Hintergrund
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Schließe Spiel-Modal
-  function closeGame() {
-    const modal = document.getElementById('gameModal');
-    const iframe = document.getElementById('gameIframe');
-    
-    modal.classList.remove('active');
-    iframe.src = ''; // Stoppe das Spiel
-    
-    // Erlaube wieder Scrollen
-    document.body.style.overflow = '';
-  }
-
-  // Schließe Modal bei ESC-Taste
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeGame();
-    }
-  });
-
-  // Schließe Modal bei Klick außerhalb
-  document.getElementById('gameModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeGame();
-    }
-  });
-</script>
 
 <!-- Wechselnde Grußkarten mit schönen Hintergründen -->
 <script>

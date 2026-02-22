@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eingebettete Spiele Demo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .info {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .info h2 {
+      color: #667eea;
+      margin-bottom: 15px;
+    }
+    
+    .info ul {
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+    
+    .game-section {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    .game-section h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    
+    .game-container {
+      background: #f5f5f5;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .game-title {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .game-desc {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+    
+    .language-note {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+    
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: 3px solid #667eea;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .verdict {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    
+    .verdict.good {
+      background: #d4edda;
+      color: #155724;
+      border-left: 4px solid #28a745;
+    }
+    
+    .verdict.ok {
+      background: #fff3cd;
+      color: #856404;
+      border-left: 4px solid #ffc107;
+    }
+    
+    .verdict.bad {
+      background: #f8d7da;
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 Eingebettete Spiele Demo für Mama</h1>
+    
+    <div class="info">
+      <h2>💡 Warum eingebettete Spiele besser sind:</h2>
+      <ul>
+        <li><strong>Kein Tab-Wechsel:</strong> Spiel bleibt auf unserer Seite</li>
+        <li><strong>Einfacher:</strong> Mama bleibt immer an einem Ort</li>
+        <li><strong>Übersichtlicher:</strong> Keine Verwirrung durch neue Seiten</li>
+        <li><strong>Schneller:</strong> Ein Klick und direkt spielen</li>
+      </ul>
+      <br>
+      <h2>❓ Das Problem mit der Sprache:</h2>
+      <p>Die meisten einbettbaren Spiele sind auf Englisch. ABER: Mahjong, Bubble Shooter und Match-3 
+      sind <strong>visuelle Spiele</strong> - man sieht was zu tun ist! Kaum Text erforderlich.</p>
+    </div>
+
+    <!-- MAHJONG -->
+    <div class="game-section">
+      <h2>🀄 Mahjong Spiele</h2>
+      
+      <div class="game-container">
+        <div class="game-title">Daily Mahjong</div>
+        <div class="game-desc">Klassisches Mahjong mit großen Steinen</div>
+        <div class="language-note">
+          ⚠️ Sprache: Englisch (aber selbsterklärend - nur Zahlen und "Play" Button)
+        </div>
+        <iframe src="https://cdn.htmlgames.com/DailyMahjong/index.html?npa=1" allowfullscreen></iframe>
+        <div class="verdict good">
+          ✅ SEHR GUT: Fast kein Text, große Steine, einfach zu verstehen
+        </div>
+      </div>
+
+      <div class="game-container">
+        <div class="game-title">Mahjong Classic</div>
+        <div class="game-desc">Traditionelles Mahjong Layout</div>
+        <div class="language-note">
+          ⚠️ Sprache: Englisch (aber nur "Play" und "Pause" - sehr wenig Text)
+        </div>
+        <iframe src="https://cdn.htmlgames.com/MahjongClassic/index.html?npa=1" allowfullscreen></iframe>
+        <div class="verdict good">
+          ✅ GUT: Selbsterklärend, wenig Text erforderlich
+        </div>
+      </div>
+    </div>
+
+    <!-- BUBBLE SHOOTER -->
+    <div class="game-section">
+      <h2>🫧 Bubble Shooter Spiele</h2>
+      
+      <div class="game-container">
+        <div class="game-title">Bubble Woods</div>
+        <div class="game-desc">Entspannendes Bubble-Spiel</div>
+        <div class="language-note">
+          ⚠️ Sprache: Englisch (aber komplett ohne Text spielbar!)
+        </div>
+        <iframe src="https://cdn.htmlgames.com/BubbleWoods/index.html?npa=1" allowfullscreen></iframe>
+        <div class="verdict good">
+          ✅ PERFEKT: Keine Sprache nötig! Man sieht einfach was zu tun ist
+        </div>
+      </div>
+
+      <div class="game-container">
+        <div class="game-title">Endless Bubble Shooter</div>
+        <div class="game-desc">Endloser Bubble Shooter Spaß</div>
+        <div class="language-note">
+          ⚠️ Sprache: Englisch (komplett visuell - keine Sprachkenntnisse nötig!)
+        </div>
+        <iframe src="https://cdn.htmlgames.com/EndlessBubbleShooter/index.html?npa=1" allowfullscreen></iframe>
+        <div class="verdict good">
+          ✅ PERFEKT: 100% visuell, einfach schießen und kombinieren
+        </div>
+      </div>
+    </div>
+
+    <!-- MATCH-3 -->
+    <div class="game-section">
+      <h2>💎 Match-3 / Juwelen Spiele</h2>
+      
+      <div class="game-container">
+        <div class="game-title">Jewels Classic</div>
+        <div class="game-desc">Klassisches Match-3 mit Edelsteinen</div>
+        <div class="language-note">
+          ⚠️ Sprache: Englisch (aber komplett visuell spielbar!)
+        </div>
+        <iframe src="https://cdn.htmlgames.com/JewelsClassic/index.html?npa=1" allowfullscreen></iframe>
+        <div class="verdict good">
+          ✅ SEHR GUT: Keine Sprache nötig, nur Juwelen kombinieren
+        </div>
+      </div>
+    </div>
+
+    <!-- WIMMELBILD -->
+    <div class="game-section">
+      <h2>🔍 Wimmelbild Spiele</h2>
+      
+      <div class="game-container">
+        <div class="game-title">Hunting Jack - At the Train Station</div>
+        <div class="game-desc">Versteckte Objekte am Bahnhof finden</div>
+        <div class="language-note">
+          ⚠️ Sprache: Englisch (BRAUCHT englische Wörter zu lesen!)
+        </div>
+        <iframe src="https://cdn.htmlgames.com/HuntingJackAtTheTrainStation/index.html?npa=1" allowfullscreen></iframe>
+        <div class="verdict bad">
+          ❌ NICHT GUT: Man muss englische Wörter lesen können (z.B. "Find: Clock, Hat, Camera")
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <h2>📊 Zusammenfassung:</h2>
+      <ul>
+        <li>✅ <strong>Mahjong:</strong> Perfekt für Embed - fast keine Sprache nötig</li>
+        <li>✅ <strong>Bubble Shooter:</strong> PERFEKT - 100% visuell</li>
+        <li>✅ <strong>Match-3:</strong> Sehr gut - nur Juwelen kombinieren</li>
+        <li>❌ <strong>Wimmelbild:</strong> Schwierig - braucht englische Wörter</li>
+      </ul>
+      <br>
+      <p><strong>Empfehlung:</strong> Wir integrieren Mahjong, Bubble und Match-3 als Embed-Spiele. 
+      Für Wimmelbilder nutzen wir weiterhin die deutschen Links!</p>
+    </div>
+
+  </div>
+</body>
+</html>
