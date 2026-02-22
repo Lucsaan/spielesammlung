@@ -181,8 +181,11 @@ SpieleSammlung/
 - ✅ Installationsanleitung erstellen
 - 📝 Auf Chromebook installieren und mit Mama testen
 
-### Phase 3: Erweiterung (📝 Geplant)
-- 📝 Bubble-Spiele recherchieren und hinzufügen
+### Phase 3: Erweiterung (🚧 In Arbeit)
+- 🚧 CDN-Spiele Integration (htmlgames.com)
+- 🚧 Bubble-Spiele recherchieren und hinzufügen
+- ✅ Wimmelbild-Sektion auf 6 Spiele erweitert
+- ✅ Mahjong-Sektion auf 6 Spiele erweitert
 - 📝 Weitere Kategorien nach Bedarf
 - 📝 Feedback von Mama einholen
 - 📝 Anpassungen basierend auf Nutzung
