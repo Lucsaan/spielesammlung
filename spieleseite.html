@@ -493,34 +493,60 @@
       align-items: center;
       padding: 20px 30px;
       border-bottom: 2px solid #f0f0f0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
     }
 
     .game-modal-title {
       font-family: 'Baloo 2', cursive;
       font-size: 1.8rem;
       font-weight: 800;
-      color: var(--text);
+      color: white;
+      flex: 1;
     }
 
-    .game-modal-close {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #f5f5f5;
-      border: none;
+    .game-modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .game-modal-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.3);
       font-size: 1.8rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
-      color: #666;
+      color: white;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .game-modal-button:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.1);
+    }
+
+    .game-modal-button:active {
+      transform: scale(0.95);
+    }
+
+    .button-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .game-modal-close:hover {
       background: #ff4444;
-      color: white;
-      transform: rotate(90deg);
+      border-color: #ff4444;
     }
 
     .game-modal-body {
@@ -536,6 +562,34 @@
       border-radius: 10px;
     }
 
+    /* Vollbild-Modus Optimierungen */
+    .game-modal-content:fullscreen,
+    .game-modal-content:-webkit-full-screen,
+    .game-modal-content:-moz-full-screen,
+    .game-modal-content:-ms-fullscreen {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .game-modal-content:fullscreen .game-modal-body,
+    .game-modal-content:-webkit-full-screen .game-modal-body,
+    .game-modal-content:-moz-full-screen .game-modal-body,
+    .game-modal-content:-ms-fullscreen .game-modal-body {
+      flex: 1;
+      padding: 0;
+    }
+
+    .game-modal-content:fullscreen .game-iframe,
+    .game-modal-content:-webkit-full-screen .game-iframe,
+    .game-modal-content:-moz-full-screen .game-iframe,
+    .game-modal-content:-ms-fullscreen .game-iframe {
+      height: 100%;
+      border-radius: 0;
+    }
+
     @media (max-width: 768px) {
       .game-modal-content {
         max-height: 95vh;
@@ -549,6 +603,24 @@
       }
       .game-modal-title {
         font-size: 1.3rem;
+      }
+      .game-modal-button {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+      }
+      .button-label {
+        font-size: 0.6rem;
+      }
+    }
+    
+    @media (max-width: 540px) {
+      .game-modal-title {
+        font-size: 1.1rem;
+      }
+      .game-modal-button {
+        width: 50px;
+        height: 50px;
       }
     }
   </style>
@@ -877,10 +949,19 @@
 
 <!-- GAME MODAL -->
 <div class="game-modal" id="gameModal">
-  <div class="game-modal-content">
+  <div class="game-modal-content" id="gameModalContent">
     <div class="game-modal-header">
       <div class="game-modal-title" id="gameTitle">Spiel</div>
-      <button class="game-modal-close" onclick="closeGame()" aria-label="Schließen">✕</button>
+      <div class="game-modal-buttons">
+        <button class="game-modal-button" onclick="toggleFullscreen()" id="fullscreenBtn" aria-label="Vollbild">
+          <span id="fullscreenIcon">⛶</span>
+          <span class="button-label">Voll</span>
+        </button>
+        <button class="game-modal-button game-modal-close" onclick="closeGame()" aria-label="Schließen">
+          <span>✕</span>
+          <span class="button-label">Ende</span>
+        </button>
+      </div>
     </div>
     <div class="game-modal-body">
       <iframe class="game-iframe" id="gameIframe" src="" allowfullscreen></iframe>
@@ -909,16 +990,68 @@
     const modal = document.getElementById('gameModal');
     const iframe = document.getElementById('gameIframe');
     
+    // Verlasse Vollbild falls aktiv
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+    
     modal.classList.remove('active');
     iframe.src = ''; // Stoppe das Spiel
     
     // Erlaube wieder Scrollen
     document.body.style.overflow = '';
+    
+    // Reset Vollbild-Icon
+    updateFullscreenIcon();
   }
 
-  // Schließe Modal bei ESC-Taste
+  // Vollbild Toggle - GROẞE FUNKTION FÜR MAMA!
+  function toggleFullscreen() {
+    const modalContent = document.getElementById('gameModalContent');
+    
+    if (!document.fullscreenElement) {
+      // In Vollbild gehen
+      if (modalContent.requestFullscreen) {
+        modalContent.requestFullscreen();
+      } else if (modalContent.webkitRequestFullscreen) {
+        modalContent.webkitRequestFullscreen(); // Safari
+      } else if (modalContent.msRequestFullscreen) {
+        modalContent.msRequestFullscreen(); // IE11
+      }
+    } else {
+      // Vollbild verlassen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen(); // Safari
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen(); // IE11
+      }
+    }
+  }
+
+  // Update Vollbild-Icon
+  function updateFullscreenIcon() {
+    const icon = document.getElementById('fullscreenIcon');
+    const label = document.querySelector('#fullscreenBtn .button-label');
+    
+    if (document.fullscreenElement) {
+      icon.textContent = '⛶'; // Exit fullscreen icon
+      label.textContent = 'Klein';
+    } else {
+      icon.textContent = '⛶'; // Fullscreen icon
+      label.textContent = 'Voll';
+    }
+  }
+
+  // Höre auf Vollbild-Änderungen
+  document.addEventListener('fullscreenchange', updateFullscreenIcon);
+  document.addEventListener('webkitfullscreenchange', updateFullscreenIcon); // Safari
+  document.addEventListener('msfullscreenchange', updateFullscreenIcon); // IE11
+
+  // Schließe Modal bei ESC-Taste (aber nicht wenn in Vollbild - ESC verlässt dann nur Vollbild)
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && !document.fullscreenElement) {
       closeGame();
     }
   });
