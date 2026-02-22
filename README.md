@@ -254,6 +254,14 @@ Bei Fragen oder Problemen:
 
 ## 🚀 Quick Start
 
-1. **Icons generieren**: Öffne `generate-icons.html` im Browser und lade alle Icons herunter
-2. **Installation**: Folge der Anleitung in `INSTALLATION.md`
-3. **Spielen**: App öffnen und Mahjong spielen! 🀄
+**Die Seite ist LIVE!** 🎉
+
+📍 **URL**: https://lucsaan.github.io/spielesammlung/spieleseite.html
+
+### Installation auf Chromebook:
+1. Öffne die URL im Chrome-Browser
+2. Klicke auf Menü (⋮) → "App installieren..."
+3. Bestätige mit "Installieren"
+4. Fertig! App erscheint im App-Launcher 🎮
+
+**Siehe `QUICK-START.md` für die Kurzanleitung!**
