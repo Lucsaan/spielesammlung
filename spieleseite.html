@@ -720,7 +720,7 @@
     <div class="grid">
 
       <div class="card s-orange" onclick="openGame('Mahjong Klassisch', 'https://cdn.htmlgames.com/MahjongClassic/index.html?npa=1')" data-game-id="mahjong-klassisch" data-game-emoji="🀄" data-game-type="embed">
-        <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite('mahjong-klassisch')">☆</button>
+        <button class="favorite-btn" data-game-id="mahjong-klassisch">☆</button>
         <div class="card-emoji">🀄</div>
         <div class="card-name">Mahjong Klassisch</div>
         <div class="card-desc">Große Steine, deutsche Buttons – direkt hier spielen!</div>
@@ -728,7 +728,7 @@
       </div>
 
       <a class="card s-amber" href="https://themahjong.com/de/mahjong/turtle-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-turtle" data-game-emoji="🐢" data-game-type="external">
-        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-turtle')">☆</button>
+        <button class="favorite-btn" data-game-id="mahjong-turtle">☆</button>
         <div class="card-emoji">🐢</div>
         <div class="card-name">Mahjong Schildkröte</div>
         <div class="card-desc">Beliebtes Schildkröten-Layout – ein Klassiker!</div>
@@ -736,7 +736,7 @@
       </a>
 
       <a class="card s-gelb" href="https://themahjong.com/de/mahjong/big-hole-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-bighole" data-game-emoji="🧩" data-game-type="external">
-        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-bighole')">☆</button>
+        <button class="favorite-btn" data-game-id="mahjong-bighole">☆</button>
         <div class="card-emoji">🧩</div>
         <div class="card-name">Mahjong Großes Loch</div>
         <div class="card-desc">Besondere Variante mit offenem Mittelpunkt – spannend!</div>
@@ -744,7 +744,7 @@
       </a>
 
       <a class="card s-rosa" href="https://themahjong.com/de/mahjong/pyramid-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-pyramid" data-game-emoji="🔺" data-game-type="external">
-        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-pyramid')">☆</button>
+        <button class="favorite-btn" data-game-id="mahjong-pyramid">☆</button>
         <div class="card-emoji">🔺</div>
         <div class="card-name">Mahjong Pyramide</div>
         <div class="card-desc">Pyramidenform – einfacher Einstieg, große Steine</div>
@@ -752,7 +752,7 @@
       </a>
 
       <a class="card s-lila" href="https://themahjong.com/de/mahjong/arena-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-arena" data-game-emoji="⚡" data-game-type="external">
-        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-arena')">☆</button>
+        <button class="favorite-btn" data-game-id="mahjong-arena">☆</button>
         <div class="card-emoji">⚡</div>
         <div class="card-name">Mahjong Arena</div>
         <div class="card-desc">Arena-Layout – übersichtlich und gut spielbar</div>
@@ -760,11 +760,74 @@
       </a>
 
       <a class="card s-tuerkis" href="https://themahjong.com/de/mahjong/mountains-free-mahjong" target="_blank" rel="noopener" data-game-id="mahjong-mountains" data-game-emoji="⛰️" data-game-type="external">
-        <button class="favorite-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleFavorite('mahjong-mountains')">☆</button>
+        <button class="favorite-btn" data-game-id="mahjong-mountains">☆</button>
         <div class="card-emoji">⛰️</div>
         <div class="card-name">Mahjong Berge</div>
         <div class="card-desc">Bergformation – abwechslungsreich und entspannend</div>
         <span class="card-link">Spielen ▶</span>
+      </a>
+
+      <div class="card s-gruen" onclick="openGame('Mahjong Connect', 'https://cdn.htmlgames.com/MahjongConnect/index.html?npa=1')">
+        <div class="card-emoji">🔗</div>
+        <div class="card-name">Mahjong Connect</div>
+        <div class="card-desc">Verbinde gleiche Steine mit Linien – eingebettet!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-mint" onclick="openGame('Daily Mahjong', 'https://cdn.htmlgames.com/DailyMahjong/index.html?npa=1')">
+        <div class="card-emoji">📅</div>
+        <div class="card-name">Daily Mahjong</div>
+        <div class="card-desc">Jeden Tag ein neues Mahjong-Puzzle – hier spielen!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-blau" onclick="openGame('Mahjong Dimensions', 'https://cdn.htmlgames.com/Mahjong3D/index.html?npa=1')">
+        <div class="card-emoji">🎲</div>
+        <div class="card-name">Mahjong 3D</div>
+        <div class="card-desc">Dreidimensionales Mahjong – von allen Seiten spielen!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-indigo" onclick="openGame('Mahjong Slide', 'https://cdn.htmlgames.com/MahjongSlide/index.html?npa=1')">
+        <div class="card-emoji">⬅️</div>
+        <div class="card-name">Mahjong Slide</div>
+        <div class="card-desc">Schiebe Reihen um passende Paare zu finden – neu!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-lila" onclick="openGame('Mahjong Shanghai', 'https://cdn.htmlgames.com/MahjongShanghai/index.html?npa=1')">
+        <div class="card-emoji">🏯</div>
+        <div class="card-name">Mahjong Shanghai</div>
+        <div class="card-desc">Das Original Shanghai-Layout – zeitloser Klassiker!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-rosa" onclick="openGame('Mahjong Titans', 'https://cdn.htmlgames.com/MahjongTitans/index.html?npa=1')">
+        <div class="card-emoji">👑</div>
+        <div class="card-name">Mahjong Titans</div>
+        <div class="card-desc">Verschiedene Layouts und Schwierigkeitsgrade – eingebettet!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <a class="card s-gelb" href="https://themahjong.com/de/mahjong/daily-mahjong" target="_blank" rel="noopener">
+        <div class="card-emoji">🌅</div>
+        <div class="card-name">TheMahjong Daily</div>
+        <div class="card-desc">Täglich neue Herausforderungen – große Auswahl!</div>
+        <span class="card-link">Extern öffnen ▶</span>
+      </a>
+
+      <a class="card s-orange" href="https://themahjong.com/de/mahjong/flowers-free-mahjong" target="_blank" rel="noopener">
+        <div class="card-emoji">🌺</div>
+        <div class="card-name">Mahjong Blumen</div>
+        <div class="card-desc">Wunderschönes Blumen-Layout zum Entspannen</div>
+        <span class="card-link">Extern öffnen ▶</span>
+      </a>
+
+      <a class="card s-amber" href="https://themahjong.com/de/mahjong/castle-free-mahjong" target="_blank" rel="noopener">
+        <div class="card-emoji">🏰</div>
+        <div class="card-name">Mahjong Schloss</div>
+        <div class="card-desc">Schloss-Formation – märchenhaft schön!</div>
+        <span class="card-link">Extern öffnen ▶</span>
       </a>
 
     </div>
@@ -813,14 +876,56 @@
         <div class="card-emoji">✨</div>
         <div class="card-name">Bubble Charms</div>
         <div class="card-desc">Zauberhafte Bubbles mit Power-Ups – sehr schöne Grafik!</div>
-        <span class="card-link">Spielen ▶</span>
+        <span class="card-link">Extern öffnen ▶</span>
       </a>
 
-      <a class="card s-mint" href="https://cdn.htmlgames.com/EndlessBubbleShooter/index.html?npa=1" target="_blank" rel="noopener">
-        <div class="card-emoji">♾️</div>
-        <div class="card-name">Endless Bubble Shooter</div>
-        <div class="card-desc">Endloser Spielspaß – immer neue Levels zum Entspannen</div>
+      <div class="card s-gruen" onclick="openGame('Bubble Spinner', 'https://cdn.htmlgames.com/BubbleSpinner/index.html?npa=1')">
+        <div class="card-emoji">🌀</div>
+        <div class="card-name">Bubble Spinner</div>
+        <div class="card-desc">Drehe den Kreis und schieße Bubbles – eingebettet!</div>
         <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-mint" onclick="openGame('Bubble Hit', 'https://cdn.htmlgames.com/BubbleHit/index.html?npa=1')">
+        <div class="card-emoji">🎯</div>
+        <div class="card-name">Bubble Hit</div>
+        <div class="card-desc">Klassischer Bubble Shooter mit Zeituhr – spannend!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-orange" onclick="openGame('Bubble Academy', 'https://cdn.htmlgames.com/BubbleAcademy/index.html?npa=1')">
+        <div class="card-emoji">🎓</div>
+        <div class="card-name">Bubble Academy</div>
+        <div class="card-desc">Level für Level schwieriger – toll zum Lernen!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-gelb" onclick="openGame('Bubble Shooter HD', 'https://cdn.htmlgames.com/BubbleShooterHD/index.html?npa=1')">
+        <div class="card-emoji">💫</div>
+        <div class="card-name">Bubble Shooter HD</div>
+        <div class="card-desc">Hochauflösend und schön – perfekt für große Bildschirme!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-pink" onclick="openGame('Smarty Bubbles X-MAS', 'https://cdn.htmlgames.com/SmartyBubblesXMAS/index.html?npa=1')">
+        <div class="card-emoji">🎄</div>
+        <div class="card-name">Smarty Bubbles Weihnacht</div>
+        <div class="card-desc">Weihnachtliche Bubble-Action – festlich und bunt!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <a class="card s-amber" href="https://www.spielaffe.de/Spiel/bubble-tower-3d" target="_blank" rel="noopener">
+        <div class="card-emoji">🗼</div>
+        <div class="card-name">Bubble Tower 3D</div>
+        <div class="card-desc">3D Bubble-Turm zum Abschießen – neue Perspektive!</div>
+        <span class="card-link">Extern öffnen ▶</span>
+      </a>
+
+      <a class="card s-indigo" href="https://www.spielaffe.de/Spiel/bubble-gems" target="_blank" rel="noopener">
+        <div class="card-emoji">💎</div>
+        <div class="card-name">Bubble Gems</div>
+        <div class="card-desc">Funkelnde Edelsteine als Bubbles – wunderschön!</div>
+        <span class="card-link">Extern öffnen ▶</span>
       </a>
 
     </div>
@@ -876,7 +981,56 @@
         <div class="card-emoji">🏺</div>
         <div class="card-name">Jewels of Arabia</div>
         <div class="card-desc">1001 Nacht Atmosphäre mit magischen Edelsteinen</div>
+        <span class="card-link">Extern öffnen ▶</span>
+      </a>
+
+      <div class="card s-tuerkis" onclick="openGame('Jewel Quest', 'https://cdn.htmlgames.com/JewelQuest/index.html?npa=1')">
+        <div class="card-emoji">🗺️</div>
+        <div class="card-name">Jewel Quest</div>
+        <div class="card-desc">Abenteuer-Match-3 auf Schatzsuche – eingebettet!</div>
         <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-blau" onclick="openGame('Jewel Burst', 'https://cdn.htmlgames.com/JewelBurst/index.html?npa=1')">
+        <div class="card-emoji">💥</div>
+        <div class="card-name">Jewel Burst</div>
+        <div class="card-desc">Sprenge Edelsteine in Gruppen – explosiver Spaß!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-indigo" onclick="openGame('Jewel Aquarium', 'https://cdn.htmlgames.com/JewelAquarium/index.html?npa=1')">
+        <div class="card-emoji">🐠</div>
+        <div class="card-name">Jewel Aquarium</div>
+        <div class="card-desc">Unterwasser-Match-3 mit Fischen – wunderschön!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-gruen" onclick="openGame('Candy Rain', 'https://cdn.htmlgames.com/CandyRain/index.html?npa=1')">
+        <div class="card-emoji">🍭</div>
+        <div class="card-name">Candy Rain</div>
+        <div class="card-desc">Süßigkeiten-Regen – buntes Match-3 Vergnügen!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-mint" onclick="openGame('Fruit Crush', 'https://cdn.htmlgames.com/FruitCrush/index.html?npa=1')">
+        <div class="card-emoji">🍎</div>
+        <div class="card-name">Fruit Crush</div>
+        <div class="card-desc">Fruchtige Match-3 Action – gesund und lecker!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <a class="card s-rosa" href="https://www.spielaffe.de/Spiel/garden-tales" target="_blank" rel="noopener">
+        <div class="card-emoji">🌷</div>
+        <div class="card-name">Garden Tales</div>
+        <div class="card-desc">Baue deinen Garten mit Match-3 – sehr entspannend!</div>
+        <span class="card-link">Extern öffnen ▶</span>
+      </a>
+
+      <a class="card s-pink" href="https://www.spielaffe.de/Spiel/mythical-jewels" target="_blank" rel="noopener">
+        <div class="card-emoji">🔮</div>
+        <div class="card-name">Mythical Jewels</div>
+        <div class="card-desc">Magische Edelsteine und Fantasie-Welt – mystisch!</div>
+        <span class="card-link">Extern öffnen ▶</span>
       </a>
 
     </div>
@@ -939,7 +1093,56 @@
         <div class="card-emoji">🏛️</div>
         <div class="card-name">Uptasia</div>
         <div class="card-desc">Wimmelbild trifft Stadtaufbau – langanhaltender Spielspaß</div>
+        <span class="card-link">Extern öffnen ▶</span>
+      </a>
+
+      <div class="card s-orange" onclick="openGame('Hunting Jack - Stadt', 'https://cdn.htmlgames.com/HuntingJackInTheCity/index.html?npa=1')">
+        <div class="card-emoji">🏙️</div>
+        <div class="card-name">Hunting Jack - Stadt</div>
+        <div class="card-desc">Objekte in der Stadt finden – visuell einfach!</div>
         <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-amber" onclick="openGame('Hunting Jack - Park', 'https://cdn.htmlgames.com/HuntingJackInThePark/index.html?npa=1')">
+        <div class="card-emoji">🌳</div>
+        <div class="card-name">Hunting Jack - Park</div>
+        <div class="card-desc">Versteckte Objekte im Park entdecken – entspannend!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-gelb" onclick="openGame('Hidden Kitchen', 'https://cdn.htmlgames.com/HiddenKitchen/index.html?npa=1')">
+        <div class="card-emoji">🍳</div>
+        <div class="card-name">Hidden Kitchen</div>
+        <div class="card-desc">Gegenstände in der Küche suchen – eingebettet!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-mint" onclick="openGame('Find 500 Differences', 'https://cdn.htmlgames.com/Find500Differences/index.html?npa=1')">
+        <div class="card-emoji">👀</div>
+        <div class="card-name">500 Unterschiede</div>
+        <div class="card-desc">Finde die Unterschiede zwischen Bildern – knifflig!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-pink" onclick="openGame('Hidden Objects Superthief', 'https://cdn.htmlgames.com/HiddenObjectsSuperthief/index.html?npa=1')">
+        <div class="card-emoji">🦹</div>
+        <div class="card-name">Superthief</div>
+        <div class="card-desc">Als Superdieb Objekte finden – spannende Story!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <a class="card s-indigo" href="https://www.spielaffe.de/Spiel/gardens-of-time" target="_blank" rel="noopener">
+        <div class="card-emoji">⏰</div>
+        <div class="card-name">Gardens of Time</div>
+        <div class="card-desc">Zeitreise-Wimmelbild mit vielen Levels – super Story!</div>
+        <span class="card-link">Extern öffnen ▶</span>
+      </a>
+
+      <a class="card s-blau" href="https://www.spielaffe.de/Spiel/mystery-paradise" target="_blank" rel="noopener">
+        <div class="card-emoji">🏝️</div>
+        <div class="card-name">Mystery Paradise</div>
+        <div class="card-desc">Tropisches Wimmelbild-Abenteuer – wunderschön!</div>
+        <span class="card-link">Extern öffnen ▶</span>
       </a>
 
     </div>
@@ -988,15 +1191,57 @@
         <div class="card-emoji">🔄</div>
         <div class="card-name">2048</div>
         <div class="card-desc">Zahlen kombinieren bis zur 2048 – süchtig machendes Puzzle!</div>
-        <span class="card-link">Spielen ▶</span>
+        <span class="card-link">Extern öffnen ▶</span>
       </a>
 
       <a class="card s-indigo" href="https://www.50plus.de/spiele/denken.html" target="_blank" rel="noopener">
         <div class="card-emoji">💭</div>
         <div class="card-name">50plus Denkspiele</div>
         <div class="card-desc">Speziell für Senioren – viele Denkspiele und Rätsel</div>
-        <span class="card-link">Spielen ▶</span>
+        <span class="card-link">Extern öffnen ▶</span>
       </a>
+
+      <div class="card s-tuerkis" onclick="openGame('Daily Sudoku', 'https://cdn.htmlgames.com/DailySudoku/index.html?npa=1')">
+        <div class="card-emoji">📅</div>
+        <div class="card-name">Daily Sudoku</div>
+        <div class="card-desc">Jeden Tag ein neues Sudoku-Rätsel – eingebettet!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-blau" onclick="openGame('Nonogram', 'https://cdn.htmlgames.com/PictureNonogram/index.html?npa=1')">
+        <div class="card-emoji">🎨</div>
+        <div class="card-name">Nonogram Rätsel</div>
+        <div class="card-desc">Logik-Puzzle mit versteckten Bildern – kreativ!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-gruen" onclick="openGame('Daily Crossword', 'https://cdn.htmlgames.com/DailyCrossword/index.html?npa=1')">
+        <div class="card-emoji">📰</div>
+        <div class="card-name">Daily Crossword</div>
+        <div class="card-desc">Tägliches Kreuzworträtsel – für Wortliebhaber!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-mint" onclick="openGame('Block Puzzle', 'https://cdn.htmlgames.com/1010Deluxe/index.html?npa=1')">
+        <div class="card-emoji">🟦</div>
+        <div class="card-name">1010 Block Puzzle</div>
+        <div class="card-desc">Tetris-ähnliches Denkspiel – entspannend ohne Zeit!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-pink" onclick="openGame('Daily Kakuro', 'https://cdn.htmlgames.com/DailyKakuro/index.html?npa=1')">
+        <div class="card-emoji">🔢</div>
+        <div class="card-name">Kakuro</div>
+        <div class="card-desc">Zahlenrätsel ähnlich Sudoku – knifflig und spannend!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
+
+      <div class="card s-orange" onclick="openGame('Woodoku', 'https://cdn.htmlgames.com/Woodoku/index.html?npa=1')">
+        <div class="card-emoji">🪵</div>
+        <div class="card-name">Woodoku</div>
+        <div class="card-desc">Mix aus Sudoku und Tetris – beruhigendes Holz-Design!</div>
+        <span class="card-link">Spielen ▶</span>
+      </div>
 
     </div>
   </div>
@@ -1390,8 +1635,19 @@
     grid.innerHTML = '';
     
     // Finde alle Spiel-Karten und clone favorisierte
+    // Suche in ALLEN Sektionen AUSSER der Favoriten-Sektion selbst
     favorites.forEach(gameId => {
-      const originalCard = document.querySelector(`[data-game-id="${gameId}"]`);
+      // Suche nur in den Original-Sektionen (nicht in favoritesGrid)
+      const allSections = document.querySelectorAll('.section:not(#favoritesSection)');
+      let originalCard = null;
+      
+      allSections.forEach(section => {
+        const card = section.querySelector(`[data-game-id="${gameId}"]`);
+        if (card && !originalCard) {
+          originalCard = card;
+        }
+      });
+      
       if (originalCard) {
         const clone = originalCard.cloneNode(true);
         
@@ -1400,15 +1656,7 @@
         if (cloneBtn) {
           cloneBtn.textContent = '★';
           cloneBtn.classList.add('is-favorite');
-          cloneBtn.setAttribute('onclick', `event.stopPropagation(); toggleFavorite('${gameId}')`);
-        }
-        
-        // Preserve click handler für embed-Spiele
-        const gameType = clone.getAttribute('data-game-type');
-        if (gameType === 'embed') {
-          const gameName = clone.querySelector('.card-name').textContent;
-          const gameUrl = originalCard.getAttribute('onclick').match(/'([^']+)'/g)[1].replace(/'/g, '');
-          clone.setAttribute('onclick', `openGame('${gameName}', ${gameUrl})`);
+          cloneBtn.setAttribute('data-game-id', gameId);
         }
         
         grid.appendChild(clone);
@@ -1453,13 +1701,29 @@
         const favBtn = document.createElement('button');
         favBtn.className = 'favorite-btn';
         favBtn.textContent = '☆';
-        favBtn.setAttribute('onclick', `event.preventDefault(); event.stopPropagation(); toggleFavorite('${gameId}')`);
+        favBtn.setAttribute('data-game-id', gameId);
         
         // Füge Button am Anfang der Karte ein
         card.insertBefore(favBtn, card.firstChild);
       }
     });
   }
+
+  // Event Delegation für Favoriten-Buttons (verhindert Konflikt mit Karten-Klick)
+  document.addEventListener('click', function(e) {
+    // Prüfe ob ein Favoriten-Button geklickt wurde
+    if (e.target.classList.contains('favorite-btn') || e.target.closest('.favorite-btn')) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const btn = e.target.classList.contains('favorite-btn') ? e.target : e.target.closest('.favorite-btn');
+      const gameId = btn.getAttribute('data-game-id');
+      
+      if (gameId) {
+        toggleFavorite(gameId);
+      }
+    }
+  });
 
   // Initialisiere Favoriten beim Laden
   window.addEventListener('load', () => {
